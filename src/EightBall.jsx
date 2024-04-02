@@ -30,16 +30,49 @@ const ANSWERS = [
     { msg: "Very doubtful.", color: "red" },
 ];
 
+const colorCounter = {
+    red: 0,
+    green: 0,
+    goldenrod: 0
+}
+
+
+/** Updates eightball to be a random message
+ *
+ * Props:
+ *  - answers [ { msg: ..., color: ...}, ...]
+ *
+ * State:
+ *  - answer
+ *
+ * App -> EightBall
+*/
 
 function EightBall({ answers = ANSWERS }) {
     const [answer, setAnswer] = useState(INITIAL_ANSWER);
 
+    function clickEightball(evt) {
+        setAnswer(answers[Math.floor(Math.random() * answers.length)]);
+        colorCounter[answer.color]++
+    }
 
+    function clickResetBtn(evt) {
+        setAnswer(INITIAL_ANSWER);
+    }
 
-    return (<div className="EightBall-container"
-    style={{ backgroundColor: answer.color }}>
-        <h3 className="EightBall-msg">{answer.msg}</h3>
-    </div>
+    return (
+        <div >
+            <div onClick={clickEightball} className="EightBall-ball"
+                style={{ backgroundColor: answer.color }}>
+                <h3 className="EightBall-msg">{answer.msg}</h3>
+            </div>
+            <button onClick={clickResetBtn} className="Reset">Reset</button>
+            <ul className="color-counter">
+                <li>Green: {colorCounter.green}</li>
+                <li>Red: {colorCounter.red}</li>
+                <li>Yellow: {colorCounter.goldenrod}</li>
+            </ul>
+        </div>
     );
 }
 

@@ -1,5 +1,5 @@
 import './App.css';
-import EightBall from "./EightBall"
+import EightBall from "./EightBall";
 
 
 /** Component for entire page.
@@ -12,7 +12,7 @@ import EightBall from "./EightBall"
 function App() {
   return (<div>
     <EightBall />
-  </div>)
+  </div>);
 };
 
 export default App;
